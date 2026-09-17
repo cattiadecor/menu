@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Decor Cắt Tỉa Nghệ Thuật</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #fcfbf7; color: #333; padding: 20px 15px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        /* 1. Logo */
+        .header-logo { text-align: center; margin-bottom: 20px; }
+        .header-logo img { max-width: 120px; height: auto; border-radius: 50%; }
+
+        /* 2. Giới thiệu */
+        .intro-text { text-align: center; max-width: 600px; margin: 0 auto 25px auto; font-size: 0.95rem; color: #555; }
+        .intro-text h1 { color: #2b580c; font-size: 1.6rem; margin-bottom: 8px; }
+
+        /* 3. Danh mục */
+        .categories-nav { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+        .category-btn { background: #fff; border: 1px solid #2b580c; color: #2b580c; padding: 6px 14px; border-radius: 20px; font-weight: 600; cursor: pointer; }
+        .category-btn.active { background: #2b580c; color: #fff; }
+
+        /* 4. Lưới sản phẩm */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        @media(min-width: 600px) { .product-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; } }
+        
+        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; flex-direction: column; }
+        .product-img { width: 100%; height: 160px; object-fit: cover; background: #eee; }
+        .product-info { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 1rem; font-weight: 700; color: #222; margin-bottom: 5px; }
+        .product-price { font-size: 0.95rem; font-weight: 700; color: #d9534f; margin-top: auto; }
+        
+        .loading { text-align: center; width: 100%; padding: 40px; font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logo chính giữa -->
+        <header class="header-logo">
+            <img src="https://i.postimg.cc/hjjtTNBS/Anh-chup-man-hinh-2026-09-17-223340.png" alt="Logo Quán" id="shop-logo">
+        </header>
+
+        <!-- Lời giới thiệu -->
+        <section class="intro-text">
+            <h1>Menu Decor Cắt Tỉa</h1>
+            <p>Chuyên dịch vụ trang trí, cắt tỉa hoa củ quả nghệ thuật cho sự kiện, tiệc cưới & mâm ngũ quả. Chọn mẫu và liên hệ trực tiếp để được hỗ trợ!</p>
+        </section>
+
+        <!-- Thanh danh mục -->
+        <nav class="categories-nav" id="category-container">
+            <button class="category-btn active" onclick="filterCategory('all', this)">Tất cả</button>
+        </nav>
+
+        <!-- Lưới sản phẩm tự động tải từ Google Sheet -->
+        <main class="product-grid" id="product-list">
+            <div class="loading">Đang tải danh sách mẫu...</div>
+        </main>
+    </div>
+
+    <script>
+        // THAY MÃ ID GOOGLE SHEET CỦA BẠN VÀO GIỮA 2 DẤU NGOẶC KÉP DƯỚI ĐÂY:
+        const SHEET_ID = "1EgOX6jd44fn8c27GqMu0fNIuGg_QhutbbmTM78dyFEg"; 
+
+        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+        let allProducts = [];
+
+        async function fetchProducts() {
+            try {
+                const response = await fetch(SHEET_URL);
+                const text = await response.text();
+                const json = JSON.parse(text.substring(47, text.length - 2));
+                const rows = json.table.rows;
+
+                allProducts = rows.map(row => ({
+                    name: row.c[0]?.v || '',
+                    category: row.c[1]?.v || 'Khác',
+                    price: row.c[2]?.v || '',
+                    image: row.c[3]?.v || '',
+                    status: row.c[4]?.v || 'hien'
+                })).filter(p => p.status === 'hien');
+
+                renderCategories();
+                renderProducts(allProducts);
+            } catch (error) {
+                document.getElementById('product-list').innerHTML = '<div class="loading">Không thể tải dữ liệu. Vui lòng kiểm tra lại ID Sheet hoặc quyền chia sẻ!</div>';
+            }
+        }
+
+        function renderCategories() {
+            const categories = ['Tất cả', ...new Set(allProducts.map(p => p.category))];
+            const container = document.getElementById('category-container');
+            container.innerHTML = categories.map((cat, index) => 
+                `<button class="category-btn ${index === 0 ? 'active' : ''}" onclick="filterCategory('${cat}', this)">${cat}</button>`
+            ).join('');
+        }
+
+        function renderProducts(products) {
+            const container = document.getElementById('product-list');
+            if(products.length === 0) {
+                container.innerHTML = '<div class="loading">Chưa có mẫu nào trong danh mục này.</div>';
+                return;
+            }
+            container.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.image || 'https://via.placeholder.com/200'}" alt="${p.name}" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">${p.name}</h3>
+                        <div class="product-price">${p.price}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (cat === 'Tất cả' || cat === 'all') {
+                renderProducts(allProducts);
+            } else {
+                renderProducts(allProducts.filter(p => p.category === cat));
+            }
+        }
+
+        fetchProducts();
+    </script>
+</body>
+</html>
