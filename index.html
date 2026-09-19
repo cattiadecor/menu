@@ -190,13 +190,8 @@
             display: grid;
 
             /*
-             * CARD CỐ ĐỊNH 220PX
-             *
-             * Màn hình rộng:
-             * 4 card, 5 card...
-             *
-             * Màn hình hẹp:
-             * 3 card, 2 card...
+             * PC:
+             * Card cố định 220px
              */
 
             grid-template-columns:
@@ -208,11 +203,6 @@
             gap: 20px;
 
             margin-bottom: 40px;
-
-            /*
-             * Không kéo card ra
-             * để lấp đầy màn hình
-             */
 
             justify-content: start;
         }
@@ -277,7 +267,11 @@
 
             width: 100%;
 
-            height: 220px;
+            /*
+             * Giảm chiều cao
+             */
+
+            height: 180px;
 
             object-fit: cover;
 
@@ -293,25 +287,23 @@
 
         .product-info {
 
-            padding: 15px;
+            padding: 8px;
 
             display: flex;
 
             flex-direction: column;
-
-            flex-grow: 1;
         }
 
 
         .product-title {
 
-            font-size: 1.1rem;
+            font-size: 1.05rem;
 
             font-weight: 700;
 
             color: #222;
 
-            margin-bottom: 6px;
+            margin-bottom: 4px;
 
             overflow-wrap: anywhere;
         }
@@ -319,13 +311,11 @@
 
         .product-desc {
 
-            font-size: 0.9rem;
+            font-size: 0.85rem;
 
             color: #666;
 
-            margin-bottom: 12px;
-
-            flex-grow: 1;
+            margin-bottom: 8px;
 
             overflow-wrap: anywhere;
         }
@@ -333,7 +323,7 @@
 
         .product-price {
 
-            font-size: 1.15rem;
+            font-size: 1.1rem;
 
             font-weight: 700;
 
@@ -380,7 +370,7 @@
 
             /*
              * Tablet:
-             * Card nhỏ hơn một chút
+             * Card 200px
              */
 
             .product-grid {
@@ -405,7 +395,25 @@
 
             .product-img {
 
-                height: 200px;
+                height: 165px;
+            }
+
+
+            .product-title {
+
+                font-size: 1rem;
+            }
+
+
+            .product-desc {
+
+                font-size: 0.82rem;
+            }
+
+
+            .product-price {
+
+                font-size: 1.05rem;
             }
 
         }
@@ -478,7 +486,7 @@
              * 2 card / hàng
              *
              * Máy rộng:
-             * có thể 3 card / hàng
+             * 3 card / hàng nếu đủ chỗ
              */
 
             .product-grid {
@@ -503,9 +511,9 @@
 
             .product-img {
 
-                height: 160px;
+                height: 125px;
 
-                aspect-ratio: 1 / 1;
+                aspect-ratio: auto;
 
                 object-fit: cover;
             }
@@ -513,25 +521,27 @@
 
             .product-info {
 
-                padding: 10px;
+                padding: 8px;
             }
 
 
             .product-title {
 
-                font-size: 0.95rem;
+                font-size: 0.92rem;
             }
 
 
             .product-desc {
 
-                font-size: 0.8rem;
+                font-size: 0.78rem;
+
+                margin-bottom: 6px;
             }
 
 
             .product-price {
 
-                font-size: 1rem;
+                font-size: 0.98rem;
             }
 
         }
@@ -574,8 +584,8 @@
 
 
             /*
-             * Máy cực nhỏ:
-             * vẫn giữ 2 card nếu đủ chỗ
+             * Card nhỏ hơn để vẫn
+             * ưu tiên 2 card / hàng
              */
 
             .product-grid {
@@ -598,31 +608,31 @@
 
             .product-img {
 
-                height: 145px;
+                height: 115px;
             }
 
 
             .product-info {
 
-                padding: 8px;
+                padding: 7px;
             }
 
 
             .product-title {
 
-                font-size: 0.9rem;
+                font-size: 0.88rem;
             }
 
 
             .product-desc {
 
-                font-size: 0.76rem;
+                font-size: 0.74rem;
             }
 
 
             .product-price {
 
-                font-size: 0.95rem;
+                font-size: 0.93rem;
             }
 
         }
@@ -692,7 +702,9 @@
             <button
                 class="category-btn active"
             >
+
                 Tất cả
+
             </button>
 
         </nav>
@@ -803,10 +815,6 @@
                     await response.text();
 
 
-                /*
-                 * Tìm phần JSON
-                 */
-
                 const start =
                     text.indexOf('{');
 
@@ -840,16 +848,12 @@
                     );
 
 
-                /*
-                 * Lấy dòng
-                 */
-
                 const rows =
                     data.table.rows;
 
 
                 /*
-                 * Bỏ dòng tiêu đề
+                 * BỎ DÒNG TIÊU ĐỀ
                  */
 
                 allProducts =
@@ -897,10 +901,6 @@
                     );
 
 
-                /*
-                 * Console
-                 */
-
                 console.log(
                     'Dữ liệu sản phẩm:',
                     allProducts
@@ -908,7 +908,7 @@
 
 
                 /*
-                 * Tạo danh mục
+                 * HIỂN THỊ DANH MỤC
                  */
 
                 renderCategories(
@@ -917,7 +917,7 @@
 
 
                 /*
-                 * Hiển thị tất cả
+                 * HIỂN THỊ TẤT CẢ
                  */
 
                 renderProducts(
@@ -975,10 +975,6 @@
                 );
 
 
-            /*
-             * Map danh mục
-             */
-
             const categoryMap =
                 new Map();
 
@@ -1017,10 +1013,6 @@
             );
 
 
-            /*
-             * Danh sách danh mục
-             */
-
             const categories = [
 
                 'Tất cả',
@@ -1029,10 +1021,6 @@
 
             ];
 
-
-            /*
-             * Tạo button
-             */
 
             container.innerHTML =
                 categories
@@ -1100,7 +1088,7 @@
 
 
             /*
-             * Active button
+             * Active nút hiện tại
              */
 
             button.classList.add(
@@ -1134,7 +1122,7 @@
 
 
             /*
-             * Danh mục được chọn
+             * LỌC
              */
 
             const selectedCategory =
@@ -1142,10 +1130,6 @@
                     category
                 );
 
-
-            /*
-             * Lọc sản phẩm
-             */
 
             const filteredProducts =
                 allProducts.filter(
@@ -1177,7 +1161,7 @@
 
 
             /*
-             * Hiển thị
+             * HIỂN THỊ
              */
 
             renderProducts(
@@ -1204,7 +1188,7 @@
 
 
             /*
-             * Không có sản phẩm
+             * KHÔNG CÓ SẢN PHẨM
              */
 
             if (
@@ -1229,7 +1213,7 @@
 
 
             /*
-             * Tạo card
+             * TẠO CARD
              */
 
             grid.innerHTML =
@@ -1274,13 +1258,19 @@
                                 </h3>
 
 
-                                <p
-                                    class="product-desc"
-                                >
+                                ${
+                                    product.desc
+                                    ? `
+                                        <p
+                                            class="product-desc"
+                                        >
 
-                                    ${product.desc}
+                                            ${product.desc}
 
-                                </p>
+                                        </p>
+                                    `
+                                    : ''
+                                }
 
 
                                 <div
@@ -1317,4 +1307,3 @@
 </body>
 
 </html>
-```
