@@ -1,130 +1,752 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Menu Decor Cắt Tỉa Nghệ Thuật</title>
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: #fcfbf7; color: #333; padding: 20px 15px; }
-        .container { max-width: 900px; margin: 0 auto; }
-        
-        /* 1. Logo */
-        .header-logo { text-align: center; margin-bottom: 20px; }
-        .header-logo img { max-width: 120px; height: auto; border-radius: 50%; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
-        /* 2. Giới thiệu */
-        .intro-text { text-align: center; max-width: 600px; margin: 0 auto 25px auto; font-size: 0.95rem; color: #555; }
-        .intro-text h1 { color: #2b580c; font-size: 1.6rem; margin-bottom: 8px; }
+        body {
+            background-color: #fcfbf7;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px 15px;
+        }
 
-        /* 3. Danh mục */
-        .categories-nav { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
-        .category-btn { background: #fff; border: 1px solid #2b580c; color: #2b580c; padding: 6px 14px; border-radius: 20px; font-weight: 600; cursor: pointer; }
-        .category-btn.active { background: #2b580c; color: #fff; }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-        /* 4. Lưới sản phẩm */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-        @media(min-width: 600px) { .product-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; } }
-        
-        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; flex-direction: column; }
-        .product-img { width: 100%; height: 160px; object-fit: cover; background: #eee; }
-        .product-info { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-title { font-size: 1rem; font-weight: 700; color: #222; margin-bottom: 5px; }
-        .product-price { font-size: 0.95rem; font-weight: 700; color: #d9534f; margin-top: auto; }
-        
-        .loading { text-align: center; width: 100%; padding: 40px; font-weight: bold; color: #666; }
+        /* =========================
+           1. LOGO
+        ========================= */
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header-logo img {
+            max-width: 140px;
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        /* =========================
+           2. GIỚI THIỆU
+        ========================= */
+
+        .intro-text {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 35px auto;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .intro-text h1 {
+            color: #2b580c;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           3. DANH MỤC
+        ========================= */
+
+        .categories-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .category-btn {
+            background-color: #ffffff;
+            border: 1px solid #2b580c;
+            color: #2b580c;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background-color: #2b580c;
+            color: #ffffff;
+        }
+
+        /* =========================
+           4. DANH SÁCH SẢN PHẨM
+        ========================= */
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fill,
+                minmax(250px, 1fr)
+            );
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+            display: block;
+        }
+
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #d9534f;
+        }
+
+        /* =========================
+           5. ĐANG TẢI
+        ========================= */
+
+        .loading {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            grid-column: 1 / -1;
+            padding: 40px 0;
+        }
+
+        /* =========================
+           6. HIỂN THỊ ĐIỆN THOẠI
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px 10px;
+            }
+
+            .header-logo img {
+                width: 110px;
+                height: 110px;
+            }
+
+            .intro-text {
+                font-size: 0.95rem;
+            }
+
+            .intro-text h1 {
+                font-size: 1.4rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .product-img {
+                height: 220px;
+            }
+
+            .category-btn {
+                padding: 7px 14px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        <!-- Logo chính giữa -->
+
+        <!-- =========================
+             1. LOGO
+        ========================= -->
+
         <header class="header-logo">
-            <img src="https://i.postimg.cc/hjjtTNBS/Anh-chup-man-hinh-2026-09-17-223340.png" alt="Logo Quán" id="shop-logo">
+
+            <img
+                id="shop-logo"
+                src="https://i.postimg.cc/hjjtTNBS/Anh-chup-man-hinh-2026-09-17-223340.png"
+                alt="Logo Quán"
+            >
+
         </header>
 
-        <!-- Lời giới thiệu -->
+
+        <!-- =========================
+             2. GIỚI THIỆU
+        ========================= -->
+
         <section class="intro-text">
-            <h1>Menu Decor Cắt Tỉa</h1>
-            <p>Chuyên dịch vụ trang trí, cắt tỉa hoa củ quả nghệ thuật cho sự kiện, tiệc cưới & mâm ngũ quả. Chọn mẫu và liên hệ trực tiếp để được hỗ trợ!</p>
+
+            <h1>Nghệ Thuật Cắt Tỉa Decor</h1>
+
+            <p>
+                Chào mừng bạn đến với menu các mẫu tỉa hoa quả
+                và củ quả nghệ thuật. Chúng tôi chuyên cung cấp
+                các mẫu decor cho tiệc cưới, sinh nhật, khai trương
+                và mâm ngũ quả sự kiện. Hãy chọn mẫu ưng ý hoặc
+                liên hệ để được tư vấn thiết kế theo yêu cầu riêng!
+            </p>
+
         </section>
 
-        <!-- Thanh danh mục -->
-        <nav class="categories-nav" id="category-container">
-            <button class="category-btn active" onclick="filterCategory('all', this)">Tất cả</button>
+
+        <!-- =========================
+             3. DANH MỤC
+        ========================= -->
+
+        <nav
+            class="categories-nav"
+            id="categories-container"
+        >
+
+            <button class="category-btn active">
+                Tất cả
+            </button>
+
         </nav>
 
-        <!-- Lưới sản phẩm tự động tải từ Google Sheet -->
-        <main class="product-grid" id="product-list">
-            <div class="loading">Đang tải danh sách mẫu...</div>
-        </main>
+
+        <!-- =========================
+             4. SẢN PHẨM
+        ========================= -->
+
+        <section>
+
+            <div
+                class="product-grid"
+                id="product-grid"
+            >
+
+                <div class="loading">
+                    Đang tải danh sách mẫu...
+                </div>
+
+            </div>
+
+        </section>
+
     </div>
 
-    <script>
-        // THAY MÃ ID GOOGLE SHEET CỦA BẠN VÀO GIỮA 2 DẤU NGOẶC KÉP DƯỚI ĐÂY:
-        const SHEET_ID = "1EgOX6jd44fn8c27GqMu0fNIuGg_QhutbbmTM78dyFEg"; 
 
-        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Trang tính1`;
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /*
+         * ID GOOGLE SHEET
+         */
+
+        const SHEET_ID =
+            '1EgOX6jd44fn8c27GqMu0fNIuGg_QhutbbmTM78dyFEg';
+
+
+        /*
+         * TÊN TAB GOOGLE SHEET
+         *
+         * Nếu tab của bạn tên khác Sheet1
+         * thì đổi Sheet1 thành tên đó.
+         */
+
+        const SHEET_NAME = 'Sheet1';
+
+
+        /*
+         * ĐƯỜNG DẪN GOOGLE SHEET
+         */
+
+        const SHEET_URL =
+            `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+
+        /*
+         * LƯU TOÀN BỘ SẢN PHẨM
+         */
+
         let allProducts = [];
 
+
+        /*
+         * =========================
+         * 1. LẤY DỮ LIỆU GOOGLE SHEET
+         * =========================
+         */
+
         async function fetchProducts() {
+
             try {
-                const response = await fetch(SHEET_URL);
-                const text = await response.text();
-                const json = JSON.parse(text.substring(47, text.length - 2));
-                const rows = json.table.rows;
 
-                allProducts = rows.map(row => ({
-                    name: row.c[0]?.v || '',
-                    category: row.c[1]?.v || 'Khác',
-                    price: row.c[2]?.v || '',
-                    image: row.c[3]?.v || '',
-                    status: row.c[4]?.v || 'hien'
-                })).filter(p => p.status === 'hien');
+                const response =
+                    await fetch(SHEET_URL);
 
-                renderCategories();
-                renderProducts(allProducts);
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        'Không thể kết nối với Google Sheet'
+                    );
+
+                }
+
+
+                const text =
+                    await response.text();
+
+
+                /*
+                 * Google trả về dữ liệu
+                 * có phần chữ bao quanh JSON.
+                 *
+                 * Lấy phần bắt đầu từ {
+                 * đến dấu } cuối cùng.
+                 */
+
+                const start =
+                    text.indexOf('{');
+
+                const end =
+                    text.lastIndexOf('}') + 1;
+
+
+                if (start === -1 || end === 0) {
+
+                    throw new Error(
+                        'Google Sheet không trả về dữ liệu hợp lệ'
+                    );
+
+                }
+
+
+                const jsonText =
+                    text.substring(start, end);
+
+
+                const data =
+                    JSON.parse(jsonText);
+
+
+                /*
+                 * Lấy các dòng sản phẩm
+                 */
+
+                const rows =
+                    data.table.rows;
+
+
+                /*
+                 * BỎ DÒNG TIÊU ĐỀ
+                 *
+                 * Dòng 1 của Sheet:
+                 *
+                 * A = Tên
+                 * B = Danh mục
+                 * C = Mô tả
+                 * D = Giá
+                 * E = Hình ảnh
+                 */
+
+                allProducts = rows
+                    .slice(1)
+                    .map(row => {
+
+                        const c =
+                            row.c || [];
+
+
+                        return {
+
+                            title:
+                                c[0]?.v || '',
+
+                            category:
+                                c[1]?.v || 'Khác',
+
+                            desc:
+                                c[2]?.v || '',
+
+                            price:
+                                c[3]?.v || '',
+
+                            image:
+                                c[4]?.v ||
+                                'https://via.placeholder.com/300x200?text=No+Image'
+
+                        };
+
+                    })
+                    .filter(product =>
+                        product.title
+                    );
+
+
+                /*
+                 * Hiển thị ra Console để kiểm tra
+                 */
+
+                console.log(
+                    'Dữ liệu sản phẩm:',
+                    allProducts
+                );
+
+
+                /*
+                 * Hiển thị danh mục
+                 */
+
+                renderCategories(
+                    allProducts
+                );
+
+
+                /*
+                 * Hiển thị sản phẩm
+                 */
+
+                renderProducts(
+                    allProducts
+                );
+
+
             } catch (error) {
-                document.getElementById('product-list').innerHTML = '<div class="loading">Không thể tải dữ liệu. Vui lòng kiểm tra lại ID Sheet hoặc quyền chia sẻ!</div>';
-            }
-        }
 
-        function renderCategories() {
-            const categories = ['Tất cả', ...new Set(allProducts.map(p => p.category))];
-            const container = document.getElementById('category-container');
-            container.innerHTML = categories.map((cat, index) => 
-                `<button class="category-btn ${index === 0 ? 'active' : ''}" onclick="filterCategory('${cat}', this)">${cat}</button>`
-            ).join('');
-        }
+                console.error(
+                    'Lỗi tải dữ liệu:',
+                    error
+                );
 
-        function renderProducts(products) {
-            const container = document.getElementById('product-list');
-            if(products.length === 0) {
-                container.innerHTML = '<div class="loading">Chưa có mẫu nào trong danh mục này.</div>';
-                return;
-            }
-            container.innerHTML = products.map(p => `
-                <div class="product-card">
-                    <img src="${p.image || 'https://via.placeholder.com/200'}" alt="${p.name}" class="product-img">
-                    <div class="product-info">
-                        <h3 class="product-title">${p.name}</h3>
-                        <div class="product-price">${p.price}</div>
+
+                document.getElementById(
+                    'product-grid'
+                ).innerHTML = `
+
+                    <div class="loading">
+
+                        Không thể tải dữ liệu.
+
+                        <br>
+
+                        <small>
+                            ${error.message}
+                        </small>
+
                     </div>
-                </div>
-            `).join('');
+
+                `;
+
+            }
+
         }
 
-        function filterCategory(cat, btn) {
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (cat === 'Tất cả' || cat === 'all') {
-                renderProducts(allProducts);
-            } else {
-                renderProducts(allProducts.filter(p => p.category === cat));
-            }
+
+        /*
+         * =========================
+         * 2. TẠO DANH MỤC
+         * =========================
+         */
+
+        function renderCategories(products) {
+
+            const container =
+                document.getElementById(
+                    'categories-container'
+                );
+
+
+            /*
+             * Lấy danh mục không trùng nhau
+             */
+
+            const categories = [
+
+                'Tất cả',
+
+                ...new Set(
+
+                    products
+                        .map(product =>
+                            product.category
+                        )
+                        .filter(Boolean)
+
+                )
+
+            ];
+
+
+            /*
+             * Tạo nút
+             */
+
+            container.innerHTML =
+                categories
+                    .map((category, index) => `
+
+                        <button
+                            class="category-btn
+                            ${index === 0 ? 'active' : ''}"
+                            onclick="filterCategory(
+                                ${JSON.stringify(category)},
+                                this
+                            )"
+                        >
+
+                            ${category}
+
+                        </button>
+
+                    `)
+                    .join('');
+
         }
+
+
+        /*
+         * =========================
+         * 3. LỌC DANH MỤC
+         * =========================
+         */
+
+        function filterCategory(
+            category,
+            button
+        ) {
+
+            /*
+             * Xóa active ở tất cả nút
+             */
+
+            document
+                .querySelectorAll(
+                    '.category-btn'
+                )
+                .forEach(btn => {
+
+                    btn.classList.remove(
+                        'active'
+                    );
+
+                });
+
+
+            /*
+             * Đánh dấu nút đang chọn
+             */
+
+            button.classList.add(
+                'active'
+            );
+
+
+            /*
+             * Nếu chọn Tất cả
+             */
+
+            if (category === 'Tất cả') {
+
+                renderProducts(
+                    allProducts
+                );
+
+            }
+
+
+            /*
+             * Nếu chọn danh mục cụ thể
+             */
+
+            else {
+
+                const filteredProducts =
+                    allProducts.filter(
+                        product =>
+                            product.category ===
+                            category
+                    );
+
+
+                renderProducts(
+                    filteredProducts
+                );
+
+            }
+
+        }
+
+
+        /*
+         * =========================
+         * 4. HIỂN THỊ SẢN PHẨM
+         * =========================
+         */
+
+        function renderProducts(
+            products
+        ) {
+
+            const grid =
+                document.getElementById(
+                    'product-grid'
+                );
+
+
+            /*
+             * Không có sản phẩm
+             */
+
+            if (products.length === 0) {
+
+                grid.innerHTML = `
+
+                    <div class="loading">
+
+                        Chưa có sản phẩm nào
+                        trong mục này.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /*
+             * Tạo các card sản phẩm
+             */
+
+            grid.innerHTML =
+                products
+                    .map(product => `
+
+                        <div class="product-card">
+
+
+                            <!-- HÌNH ẢNH -->
+
+                            <img
+
+                                src="${product.image}"
+
+                                alt="${product.title}"
+
+                                class="product-img"
+
+                                onerror="
+                                    this.src =
+                                    'https://via.placeholder.com/300x200?text=Loi+Anh'
+                                "
+
+                            >
+
+
+                            <!-- THÔNG TIN -->
+
+                            <div class="product-info">
+
+
+                                <h3 class="product-title">
+
+                                    ${product.title}
+
+                                </h3>
+
+
+                                <p class="product-desc">
+
+                                    ${product.desc}
+
+                                </p>
+
+
+                                <div class="product-price">
+
+                                    ${product.price}
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    `)
+                    .join('');
+
+        }
+
+
+        /*
+         * =========================
+         * 5. CHẠY KHI MỞ TRANG
+         * =========================
+         */
 
         fetchProducts();
+
     </script>
+
 </body>
 </html>
+```
