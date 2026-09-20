@@ -91,7 +91,7 @@
 
             max-width: 750px;
 
-            margin: 0 auto 35px auto;
+            margin: 0 auto 30px auto;
 
             color: #555;
 
@@ -129,7 +129,115 @@
 
 
         /* =========================
-           3. DANH MỤC
+           3. HƯỚNG DẪN BẢO QUẢN
+        ========================= */
+
+        .storage-guide {
+
+            max-width: 900px;
+
+            margin: 0 auto 35px auto;
+
+            padding: 25px;
+
+            background: #f4f8ed;
+
+            border: 1px solid #dce8cf;
+
+            border-radius: 16px;
+
+            color: #555;
+        }
+
+
+        .storage-guide h2 {
+
+            text-align: center;
+
+            color: #2b580c;
+
+            font-size: 1.4rem;
+
+            margin-bottom: 20px;
+
+            line-height: 1.3;
+        }
+
+
+        .storage-content {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    1fr
+                );
+
+            gap: 15px;
+        }
+
+
+        .storage-item {
+
+            background: #ffffff;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            border-left:
+                4px solid #2b580c;
+
+            box-shadow:
+                0 2px 8px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.03
+                );
+        }
+
+
+        .storage-item h3 {
+
+            color: #2b580c;
+
+            font-size: 1rem;
+
+            margin-bottom: 5px;
+
+            line-height: 1.4;
+        }
+
+
+        .storage-item p {
+
+            font-size: 0.9rem;
+
+            line-height: 1.5;
+
+            margin: 0;
+
+            color: #666;
+        }
+
+
+        .storage-note {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            font-size: 0.9rem;
+
+            color: #666;
+        }
+
+
+        /* =========================
+           4. DANH MỤC
         ========================= */
 
         .categories-nav {
@@ -179,20 +287,12 @@
 
 
         /* =========================
-           4. DANH SÁCH SẢN PHẨM
-           
-           CARD CỐ ĐỊNH
-           TỰ ĐỘNG XẾP THEO MÀN HÌNH
+           5. DANH SÁCH SẢN PHẨM
         ========================= */
 
         .product-grid {
 
             display: grid;
-
-            /*
-             * PC:
-             * Card cố định 220px
-             */
 
             grid-template-columns:
                 repeat(
@@ -260,16 +360,12 @@
 
 
         /* =========================
-           5. ẢNH SẢN PHẨM
+           6. ẢNH SẢN PHẨM
         ========================= */
 
         .product-img {
 
             width: 100%;
-
-            /*
-             * Giảm chiều cao
-             */
 
             height: 180px;
 
@@ -282,7 +378,7 @@
 
 
         /* =========================
-           6. THÔNG TIN SẢN PHẨM
+           7. THÔNG TIN SẢN PHẨM
         ========================= */
 
         .product-info {
@@ -332,7 +428,7 @@
 
 
         /* =========================
-           7. ĐANG TẢI
+           8. ĐANG TẢI
         ========================= */
 
         .loading {
@@ -350,7 +446,7 @@
 
 
         /* =========================
-           8. TABLET
+           9. TABLET
         ========================= */
 
         @media (max-width: 800px) {
@@ -368,10 +464,23 @@
             }
 
 
-            /*
-             * Tablet:
-             * Card 200px
-             */
+            /* Hướng dẫn */
+
+            .storage-guide {
+
+                padding: 20px;
+
+                margin-bottom: 30px;
+            }
+
+
+            .storage-content {
+
+                gap: 12px;
+            }
+
+
+            /* Sản phẩm */
 
             .product-grid {
 
@@ -420,7 +529,7 @@
 
 
         /* =========================
-           9. ĐIỆN THOẠI
+           10. ĐIỆN THOẠI
         ========================= */
 
         @media (max-width: 600px) {
@@ -446,6 +555,8 @@
             }
 
 
+            /* Giới thiệu */
+
             .intro-text {
 
                 font-size: 0.95rem;
@@ -459,6 +570,62 @@
                 font-size: 1.35rem;
             }
 
+
+            /* Hướng dẫn */
+
+            .storage-guide {
+
+                padding: 18px;
+
+                margin-bottom: 25px;
+
+                border-radius: 14px;
+            }
+
+
+            .storage-guide h2 {
+
+                font-size: 1.2rem;
+
+                margin-bottom: 15px;
+            }
+
+
+            .storage-content {
+
+                grid-template-columns: 1fr;
+
+                gap: 10px;
+            }
+
+
+            .storage-item {
+
+                padding: 12px;
+            }
+
+
+            .storage-item h3 {
+
+                font-size: 0.95rem;
+            }
+
+
+            .storage-item p {
+
+                font-size: 0.82rem;
+            }
+
+
+            .storage-note {
+
+                font-size: 0.8rem;
+
+                margin-top: 15px;
+            }
+
+
+            /* Danh mục */
 
             .categories-nav {
 
@@ -477,17 +644,7 @@
             }
 
 
-            /*
-             * ĐIỆN THOẠI
-             *
-             * Card cố định 160px.
-             *
-             * Máy nhỏ:
-             * 2 card / hàng
-             *
-             * Máy rộng:
-             * 3 card / hàng nếu đủ chỗ
-             */
+            /* Sản phẩm */
 
             .product-grid {
 
@@ -548,7 +705,7 @@
 
 
         /* =========================
-           10. ĐIỆN THOẠI RẤT NHỎ
+           11. ĐIỆN THOẠI RẤT NHỎ
         ========================= */
 
         @media (max-width: 380px) {
@@ -574,6 +731,42 @@
             }
 
 
+            /* Hướng dẫn */
+
+            .storage-guide {
+
+                padding: 14px;
+
+                border-radius: 12px;
+            }
+
+
+            .storage-guide h2 {
+
+                font-size: 1.1rem;
+            }
+
+
+            .storage-item {
+
+                padding: 10px;
+            }
+
+
+            .storage-item h3 {
+
+                font-size: 0.9rem;
+            }
+
+
+            .storage-item p {
+
+                font-size: 0.76rem;
+            }
+
+
+            /* Danh mục */
+
             .category-btn {
 
                 padding:
@@ -583,10 +776,7 @@
             }
 
 
-            /*
-             * Card nhỏ hơn để vẫn
-             * ưu tiên 2 card / hàng
-             */
+            /* Sản phẩm */
 
             .product-grid {
 
@@ -691,7 +881,105 @@
 
 
         <!-- =========================
-             3. DANH MỤC
+             3. HƯỚNG DẪN BẢO QUẢN
+        ========================= -->
+
+        <section class="storage-guide">
+
+            <h2>
+                🌿 Hướng Dẫn Bảo Quản
+            </h2>
+
+
+            <div class="storage-content">
+
+
+                <div class="storage-item">
+
+                    <h3>
+                        🌡️ Nhiệt độ
+                    </h3>
+
+                    <p>
+
+                        Bảo quản sản phẩm ở nơi
+                        thoáng mát, tránh ánh nắng
+                        trực tiếp và nguồn nhiệt.
+
+                    </p>
+
+                </div>
+
+
+                <div class="storage-item">
+
+                    <h3>
+                        💧 Độ ẩm
+                    </h3>
+
+                    <p>
+
+                        Giữ sản phẩm ở môi trường
+                        khô thoáng, tránh nơi quá
+                        ẩm hoặc có nước đọng.
+
+                    </p>
+
+                </div>
+
+
+                <div class="storage-item">
+
+                    <h3>
+                        ❄️ Bảo quản lạnh
+                    </h3>
+
+                    <p>
+
+                        Với các mẫu cần giữ độ tươi,
+                        nên bảo quản trong ngăn mát
+                        tủ lạnh và tránh để gần
+                        thực phẩm có mùi mạnh.
+
+                    </p>
+
+                </div>
+
+
+                <div class="storage-item">
+
+                    <h3>
+                        ⏰ Thời gian sử dụng
+                    </h3>
+
+                    <p>
+
+                        Nên sử dụng sản phẩm trong
+                        thời gian sớm nhất để giữ
+                        được màu sắc, độ tươi và
+                        hình dáng đẹp.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <p class="storage-note">
+
+                💚 Nếu cần hướng dẫn bảo quản riêng
+                cho từng mẫu, vui lòng liên hệ với
+                chúng tôi để được tư vấn.
+
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             4. DANH MỤC
         ========================= -->
 
         <nav
@@ -711,7 +999,7 @@
 
 
         <!-- =========================
-             4. SẢN PHẨM
+             5. SẢN PHẨM
         ========================= -->
 
         <section>
@@ -1069,7 +1357,7 @@
 
 
             /*
-             * Xóa active
+             * XÓA ACTIVE
              */
 
             document
@@ -1088,7 +1376,7 @@
 
 
             /*
-             * Active nút hiện tại
+             * ACTIVE NÚT HIỆN TẠI
              */
 
             button.classList.add(
