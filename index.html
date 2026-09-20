@@ -52,30 +52,64 @@
 
 
         /* =========================
-           1. LOGO
+           1. TÊN THƯƠNG HIỆU
         ========================= */
 
-        .header-logo {
+        .brand-name {
+
+            width: 100%;
 
             text-align: center;
 
-            margin-bottom: 25px;
+            margin: 0 auto 25px auto;
+
+            padding-top: 5px;
         }
 
 
-        .header-logo img {
+        .brand-title {
 
-            width: auto;
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                "URW Chancery L",
+                cursive;
 
-            max-width: 220px;
+            font-size:
+                clamp(
+                    3rem,
+                    7vw,
+                    5rem
+                );
 
-            max-height: 150px;
+            font-weight: 500;
 
-            height: auto;
+            line-height: 1;
 
-            display: block;
+            color: #167f8c;
 
-            margin: 0 auto;
+            letter-spacing: 1px;
+
+            text-align: center;
+        }
+
+
+        .brand-subtitle {
+
+            text-align: center;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 0.75rem;
+
+            color: #555;
+
+            letter-spacing: 1.5px;
+
+            margin-top: 8px;
         }
 
 
@@ -464,6 +498,14 @@
             }
 
 
+            /* Tên thương hiệu */
+
+            .brand-title {
+
+                font-size: 4rem;
+            }
+
+
             /* Hướng dẫn */
 
             .storage-guide {
@@ -541,17 +583,31 @@
             }
 
 
-            .header-logo {
+            /* Tên thương hiệu */
+
+            .brand-name {
 
                 margin-bottom: 20px;
+
+                padding-top: 5px;
             }
 
 
-            .header-logo img {
+            .brand-title {
 
-                max-width: 160px;
+                font-size: 3.2rem;
 
-                max-height: 120px;
+                letter-spacing: 0.5px;
+            }
+
+
+            .brand-subtitle {
+
+                font-size: 0.65rem;
+
+                letter-spacing: 1px;
+
+                margin-top: 6px;
             }
 
 
@@ -717,13 +773,23 @@
             }
 
 
-            .header-logo img {
+            /* Tên thương hiệu */
 
-                max-width: 140px;
+            .brand-title {
 
-                max-height: 100px;
+                font-size: 2.8rem;
             }
 
+
+            .brand-subtitle {
+
+                font-size: 0.6rem;
+
+                letter-spacing: 0.8px;
+            }
+
+
+            /* Giới thiệu */
 
             .intro-text h1 {
 
@@ -839,16 +905,18 @@
 
 
         <!-- =========================
-             1. LOGO
+             1. TÊN THƯƠNG HIỆU
         ========================= -->
 
-        <header class="header-logo">
+        <header class="brand-name">
 
-            <img
-                id="shop-logo"
-                src="https://i.postimg.cc/MTphWxzj/logo.png"
-                alt="Logo Quán"
-            >
+            <div class="brand-title">
+                Mạnh Hoàn
+            </div>
+
+            <div class="brand-subtitle">
+                Cung Cấp Decor & Đào Tạo Nghệ Thuật
+            </div>
 
         </header>
 
